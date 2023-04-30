@@ -1,9 +1,23 @@
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Search Engine</title>
     <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <h1>Your Search Engine</h1>
+    <form action="/search" method="GET">
+      <input type="text" name="q" placeholder="Search..." />
+      <button type="submit">Search</button>
+    </form>
+    {% if results %}
+    <h2>Search Results:</h2>
+    <ul>
+      {% for result in results %}
+      <li><a href="{{ result.url }}">{{ result.title }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
   </body>
 </html>
